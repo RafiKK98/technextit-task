@@ -15,9 +15,9 @@ const AllUsers = () => {
         setShowUsers(users);
     }, [users]);
 
-    const handleSearch = (event) => {
+    const handleSearch = event => {
         const searchTerm = event.target.value;
-        const filteredUsers = showUsers.filter((user) => (
+        const filteredUsers = users.filter((user) => (
             user.firstName.toLowerCase().includes(searchTerm.toLowerCase())
             || user.lastName.toLowerCase().includes(searchTerm.toLowerCase())
         ));
@@ -29,7 +29,7 @@ const AllUsers = () => {
         console.log(filterOption);
         switch (filterOption) {
             case 'name': {
-                const filteredUsers = users.toSorted((userA, userB) => {
+                const filteredUsers = showUsers.toSorted((userA, userB) => {
                     const nameA = userA.firstName + ' ' + userA.lastName;
                     const nameB = userB.firstName + ' ' + userB.lastName;
                     if (nameA < nameB) {
@@ -93,7 +93,7 @@ const AllUsers = () => {
                     <input
                         type="text"
                         placeholder="Search Here"
-                        className="input input-bordered w-full"
+                        className="input input-bordered input-primary w-full"
                         onChange={handleSearch}
                     />
                 </label>
@@ -102,7 +102,7 @@ const AllUsers = () => {
                         <span className="label-text">Sort by-</span>
                         {/* <span className="label-text-alt">Alt label</span> */}
                     </div>
-                    <select className="select select-bordered" onChange={handleSort}>
+                    <select className="select select-bordered select-primary w-full" onChange={handleSort}>
                         <option selected value={`all`}>All</option>
                         <option value={`name`}>Name</option>
                         <option value={`email`}>Email</option>
