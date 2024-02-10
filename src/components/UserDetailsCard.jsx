@@ -7,7 +7,9 @@ const UserDetailsCard = ({ user }) => {
     return (
         <section className="my-10 p-10 bg-gray-300 rounded-xl flex flex-col justify-start lg:flex-row lg:justify-between gap-10">
             <motion.div className="card bg-base-100 shadow-xl"
-                
+                initial={{ left: -300, opacity: 0}}
+                animate={{ left: 0, opacity: 1}}
+                transition={{ duration: 0.5}}
             >
                 <div className="card-body">
                     <h2 className="card-title text-emerald-600 justify-center text-2xl">User profile</h2>
@@ -18,30 +20,33 @@ const UserDetailsCard = ({ user }) => {
                 <div className="card-body">
                     <h2 className="card-title">{user?.firstName + ' ' + user?.lastName}</h2>
                     <div className="divider my-0"></div>
-                    <p><span className="font-semibold">Profession:</span> {user?.company?.title}</p>
+                    <p className="flex items-center justify-between"><span className="font-semibold">Profession:</span> {user?.company?.title}</p>
                     <div className="divider my-0"></div>
-                    <p><span className="font-semibold">Email:</span> {user?.email}</p>
+                    <p className="flex items-center justify-between"><span className="font-semibold">Email:</span> {user?.email}</p>
                     <div className="divider my-0"></div>
-                    <p><span className="font-semibold">Phone:</span> {user?.phone}</p>
+                    <p className="flex items-center justify-between"><span className="font-semibold">Phone:</span> {user?.phone}</p>
                     <div className="divider my-0"></div>
-                    <p><span className="font-semibold">Address: </span> {user?.address.address + ', ' + user?.address.city + ', ' + user?.address.state}</p>
+                    <p className="flex items-center justify-between"><span className="font-semibold">Address: </span> {user?.address.address + ', ' + user?.address.city + ', ' + user?.address.state}</p>
                 </div>
             </motion.div>
-            <motion.div className="bg-base-100 rounded-2xl shadow-xl flex-grow">
+            <motion.div className="card bg-base-100 rounded-2xl shadow-xl flex-grow"
+                initial={{ right: -300, opacity: 0}}
+                animate={{ right: 0, opacity: 1}}
+                transition={{ duration: 0.5}}
+            >
                 <div className="card-body">
                     <h2 className="card-title text-emerald-600 justify-center text-2xl mb-10">Company</h2>
                     <h2 className="text-xl"><span className="font-semibold">Company Name: </span>{user?.company?.name}</h2>
                     <div className="divider my-0"></div>
-                    <p><span className="font-semibold">Department: </span>{user?.company?.department}</p>
+                    <p className="flex items-center gap-1"><span className="font-semibold">Department: </span>{user?.company?.department}</p>
                     <div className="divider my-0"></div>
-                    <p><span className="font-semibold">Address: </span>{user?.company?.address?.address}</p>
-                    {/* <div className="divider my-0"></div> */}
+                    <p className="flex items-center gap-1"><span className="font-semibold">Address: </span>{user?.company?.address?.address}</p>
                     <div className="divider my-0"></div>
-                    <p><span className="font-semibold">City: </span>{user?.company?.address?.city}</p>
+                    <p className="flex items-center gap-1"><span className="font-semibold">City: </span>{user?.company?.address?.city}</p>
                     <div className="divider my-0"></div>
-                    <p><span className="font-semibold">State: </span>{user?.company?.address?.state}</p>
+                    <p className="flex items-center gap-1"><span className="font-semibold">State: </span>{user?.company?.address?.state}</p>
                     <div className="divider my-0"></div>
-                    <p><span className="font-semibold">Postal Code: </span>{user?.company?.address?.postalCode}</p>
+                    <p className="flex items-center gap-1"><span className="font-semibold">Postal Code: </span>{user?.company?.address?.postalCode}</p>
                 </div>
             </motion.div>
         </section>

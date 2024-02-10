@@ -3,9 +3,9 @@ import { Link, NavLink } from "react-router-dom"
 const Header = () => {
 
     const navLinks = <>
-        <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/about-us">About Us</NavLink></li>
-        <li><NavLink to="/contact">Contact</NavLink></li>
+        <li className="text-base"><NavLink to="/">Home</NavLink></li>
+        <li className="text-base"><NavLink to="/about-us">About Us</NavLink></li>
+        <li className="text-base"><NavLink to="/contact">Contact</NavLink></li>
     </>
 
     return (
@@ -20,7 +20,7 @@ const Header = () => {
                             {navLinks}
                         </ul>
                     </div>
-                    <Link to="/" className="btn btn-ghost text-xl">daisyUI</Link>
+                    <Link to="/" className="btn btn-ghost text-xl">UsersHUB</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">

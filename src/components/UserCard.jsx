@@ -6,7 +6,9 @@ const UserCard = ({ user }) => {
 
     return (
         <motion.div className="card max-w-xs mx-auto bg-white shadow-xl"
-            
+            initial={{ opacity: 0}}
+            animate={{ opacity: 1}}
+            transition={{ duration: 1}}
         >
             <figure className="pt-2 px-2">
                 <img src={image} alt="avatar" className=" border border-black rounded-xl" />
