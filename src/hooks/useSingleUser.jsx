@@ -3,7 +3,7 @@ import useUsers from "./useUsers"
 
 const useSingleUser = (id) => {
     
-    const [users, ] = useUsers();
+    const [users, usersLoading] = useUsers();
     const [user, setUser] = useState(null);
 
     useEffect(() => {
@@ -11,7 +11,7 @@ const useSingleUser = (id) => {
         setUser(currentUser[0]);
     }, [id, users]);
     
-    return user;
+    return [user, usersLoading];
 }
 
 export default useSingleUser

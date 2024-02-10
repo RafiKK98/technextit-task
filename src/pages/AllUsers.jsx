@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import UserCard from "../components/UserCard";
 import useUsers from "../hooks/useUsers"
+import Swal from "sweetalert2";
 
 const AllUsers = () => {
 
@@ -8,8 +9,6 @@ const AllUsers = () => {
 
     const [ showUsers, setShowUsers ] = useState([]);
     // const [ filteredUsers, setFilteredUsers] = useState([]);
-
-
 
     useEffect(() => {
         setShowUsers(users);
@@ -76,6 +75,42 @@ const AllUsers = () => {
         
     };
 
+    const handleAddUser = event => {
+        event.preventDefault();
+        const formData = event.target;
+        const firstNameValue = formData.firstName.value;
+        const lastNameValue = formData.lastName.value;
+        const imageValue = formData.image.value;
+        const emailValue = formData.email.value;
+        const addressValue = formData.address.value;
+        const cityValue = formData.city.value;
+        const stateValue = formData.state.value;
+        const companyNameValue = formData.companyName.value;
+        const userObject = {
+            firstName: firstNameValue,
+            lastName: lastNameValue,
+            image: imageValue,
+            email: emailValue,
+            address: {
+                address: addressValue,
+                city: cityValue,
+                state: stateValue,
+            },
+            company: {
+                name: companyNameValue,
+            },
+        };
+        console.log(userObject);
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "User has been added!",
+            showConfirmButton: false,
+            timer: 1500
+        })
+        setShowUsers([...showUsers, userObject]);
+    }
+
     if (usersLoading) return <progress className="progress progress-secondary"></progress>
     if (usersLoadingError) return 'An error has occurred: ' + usersLoadingError.message;
 
@@ -84,7 +119,7 @@ const AllUsers = () => {
         // <progress className="progress progress-secondary"></progress>
         // :
         <>
-            <h2 className="mt-10 text-4xl text-center font-semibold">Users List</h2>
+            <h2 className="mt-10 px-2 text-4xl font-semibold text-center lg:text-start">Users List</h2>
             <div className="px-2 mt-10 flex flex-col lg:flex-row items-center lg:justify-between gap-10">
                 <label className="form-control w-3/4 lg:w-1/2">
                     <div className="label">
@@ -110,19 +145,73 @@ const AllUsers = () => {
                     </select>
                 </label>
             </div>
-            <div className="mt-4 mx-auto flex justify-center">
-                {/* <select value={sortBy} onChange={handleSort}>
-                    <option value="name">Sort by Name</option>
-                    <option value="email">Sort by Email</option>
-                    <option value="company">Sort by Company Name</option>
-                </select> */}
-            </div>
-            <div className="px-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-auto gap-5 my-10">
+            <div className="bg-gray-300 mx-auto my-5 p-5 rounded-xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
                 {
                     showUsers.map((showUser, idx ) => (
                         <UserCard key={idx} user={showUser} />
                     ))
                 }
+            </div>
+            <div className="bg-gray-300 my-5 p-5 rounded-xl">
+                <div className="card shrink-0 w-full shadow-2xl bg-base-100">
+                    <form onSubmit={handleAddUser} className="card-body">
+                        <h2 className="text-2xl font-medium text-center">Add a User</h2>
+                        <div className="grid grid-cols-2 gap-5">
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">First Name</span>
+                                </label>
+                                <input type="text" name="firstName" placeholder="First Name" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Last Name</span>
+                                </label>
+                                <input type="text" name="lastName" placeholder="Last Name" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Avatar Link</span>
+                                </label>
+                                <input type="text" name="image" placeholder="Avatar Link" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Email</span>
+                                </label>
+                                <input type="email" name="email" placeholder="Email" className="input input-bordered" required />
+                            </div>
+                            <div className="divider col-span-2"></div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Address</span>
+                                </label>
+                                <input type="text" name="address" placeholder="Address Street" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Address</span>
+                                </label>
+                                <input type="text" name="city" placeholder="Address Suite" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Address</span>
+                                </label>
+                                <input type="text" name="state" placeholder="Address City" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Company</span>
+                                </label>
+                                <input type="text" name="companyName" placeholder="Company Name" className="input input-bordered" required />
+                            </div>
+                        </div>
+                        <div className="form-control mt-6">
+                            <button type="submit" className="btn btn-primary">Add User</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </>
     )
