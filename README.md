@@ -7,6 +7,7 @@ This repository contains the solution code for the Job Task project provided by 
 Technologies used:
 - React
 - React-router
+- React-helmet
 - Axios
 - Tanstack Query
 - Tailwind
@@ -48,3 +49,7 @@ To run the application locally, the following requirements are necessary:
     yarn build
     ```
     This will generate an optimized build in the `dist` directory.
+
+### Links
+1. Github repository link: [https://github.com/RafiKK98/technextit-task](https://github.com/RafiKK98/technextit-task)
+2. Live preview link: [https://brief-death.surge.sh](https://brief-death.surge.sh)
